@@ -1,9 +1,7 @@
 const mongoose = require("mongoose");
-const fs = require("fs");
-const path = require("path");
-const csv = require("csv-parser");
 const { connectToMongoDBData, connectToMongoDBLocal } = require("../connect");
 
+// Market Schema
 const marketSchema = new mongoose.Schema({
     state_id: {
         type: String,
@@ -45,6 +43,7 @@ const marketSchema = new mongoose.Schema({
     ],
 });
 
+// Commodities Schema
 const commoditiesSchema = new mongoose.Schema({
     commodity_id: {
         type: Number,
@@ -56,22 +55,28 @@ const commoditiesSchema = new mongoose.Schema({
     },
 });
 
+// Mongoose Models
 const Markets = connectToMongoDBData.model("market", marketSchema);
 const Commodities = connectToMongoDBData.model("commodity", commoditiesSchema);
 
-// Get Commodities
+// ---------------------------------- API Handlers ----------------------------------
+
+// GET Commodities
+// app.get("/api/commodities")
 async function handleGetCommodities(req, res) {
     const result = await Commodities.find({});
     return res.json(result.map((commodities) => commodities["commodity"]));
 }
 
-// Get States
+// GET States
+// app.get("/api/states")
 async function handleGetStates(req, res) {
     const result = await Markets.find({});
     return res.json(result.map((states) => states["state"]));
 }
 
-// Get Districts
+// GET Districts
+// app.get("/api/districts/:state")
 async function handleGetDistricts(req, res) {
     const stateName = req.params.state;
     const state = await Markets.findOne({ state: stateName });
@@ -79,14 +84,14 @@ async function handleGetDistricts(req, res) {
     return res.json(districts.map((district) => district["district"]));
 }
 
-// Get Markets
+// GET Markets
+// app.get("/api/markets/:state/:district")
 async function handleGetMarkets(req, res) {
     const stateName = req.params.state;
     const districtName = req.params.district;
 
     const state = await Markets.findOne({ state: stateName });
     const districts = state["districts"];
-
     const markets = districts.find(
         (district) => district["district"] === districtName
     )["markets"];

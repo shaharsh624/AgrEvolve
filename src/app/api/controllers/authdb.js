@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const { connectToMongoDBUsers } = require("../connect");
 
+// API Key Schema
 const apiSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -19,10 +20,12 @@ const apiSchema = new mongoose.Schema({
         required: true,
     },
 });
-
 mongoose.pluralize(null);
+
+// Model
 const Apikey = connectToMongoDBUsers.model("apikeys", apiSchema);
 
+// Generates random API key
 function generateAPIKey() {
     const { randomBytes } = require("crypto");
     const apiKey = randomBytes(16).toString("hex");
@@ -64,6 +67,7 @@ const handleAddApikey = async (req, res) => {
     }
 };
 
+// Fetch all API keys
 const handleFetchApikey = async (req, res) => {
     try {
         const data = await Apikey.find({});
@@ -73,6 +77,7 @@ const handleFetchApikey = async (req, res) => {
     }
 };
 
+// Check if API key exists
 async function checkApiKey(apiKey) {
     try {
         const item = await Apikey.findOne({ apiKey: apiKey });
@@ -83,6 +88,7 @@ async function checkApiKey(apiKey) {
     }
 }
 
+// Check if API key is valid
 const authApikey = async (req, res, next) => {
     const apiKey = req.headers["api-key"];
 

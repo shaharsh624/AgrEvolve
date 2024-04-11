@@ -1,7 +1,5 @@
 const mongoose = require("mongoose");
-const fs = require("fs");
 const path = require("path");
-const csv = require("csv-parser");
 const { DateTime } = require("luxon");
 const {
     connectToMongoDBCommodity,
@@ -9,6 +7,7 @@ const {
 } = require("../connect");
 const { Decimal128 } = require("mongodb");
 
+// Commodity Schema
 const commoditySchema = new mongoose.Schema(
     {
         "Reported Date": {
@@ -55,10 +54,12 @@ const commoditySchema = new mongoose.Schema(
         autoCreate: false,
     }
 );
-
 mongoose.pluralize(null);
 
-// Get Request for each Commodity
+// ---------------------------------- API Handlers ----------------------------------
+
+// GET Request for each Commodity
+// app.get("/api/commodity/:commodity")
 async function handleGetCommodity(req, res) {
     const commodity = req.params.commodity;
     const Commodity = connectToMongoDBCommodity.model(
@@ -69,7 +70,8 @@ async function handleGetCommodity(req, res) {
     return res.json(result);
 }
 
-// Create Request for each commodity to add it's data from folders
+// POST Request for each commodity to add it's data from folders
+// app.post("/api/commodity/create/:commodity")
 const handleCreateCommodity = async (req, res) => {
     const commodity = req.params.commodity;
     const currentDir = __dirname;
@@ -92,6 +94,8 @@ const handleCreateCommodity = async (req, res) => {
     });
 };
 
+// POST Request to filter data based on the given parameters for Commodity
+// app.post("/api/commodity")
 async function handleGetCommodityFilter(req, res) {
     const {
         stateName,

@@ -1,27 +1,28 @@
 const express = require("express");
 var cors = require("cors");
 const bodyParser = require("body-parser");
+require("dotenv").config();
+
 const {
     handleGetCommodities,
     handleGetStates,
     handleGetDistricts,
     handleGetMarkets,
 } = require("./controllers/marketdb");
+
 const {
     handleGetCommodity,
     handleCreateCommodity,
     handleGetCommodityFilter,
 } = require("./controllers/commoditydb");
+
 const {
     handleAddApikey,
     handleFetchApikey,
     authApikey,
 } = require("./controllers/authdb");
 
-require("dotenv").config();
-
 const app = express();
-const PORT = 8080;
 app.use(
     bodyParser.urlencoded({
         extended: true,
@@ -45,6 +46,6 @@ app.post("/api/commodity", authApikey, handleGetCommodityFilter);
 app.get("/api/user/createapikey", authApikey, handleAddApikey);
 app.get("/api/user/apikeys", authApikey, handleFetchApikey);
 
-app.listen(PORT, () => {
-    console.log(`API Server started on port ${PORT}`);
+app.listen(process.env.PORT || 5000, () => {
+    console.log(`Server Running...`);
 });

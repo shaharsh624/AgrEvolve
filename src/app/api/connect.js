@@ -5,41 +5,42 @@ require("dotenv").config();
 const connectToMongoDBData = mongoose.createConnection(
     String(process.env.MONGODB_URL_DATA)
 );
-if (connectToMongoDBData) {
-    console.log("Connected to database in MongoDB");
-}
 
 // Atlas CommodityData
 const connectToMongoDBCommodity = mongoose.createConnection(
     String(process.env.MONGODB_URL_COMMODITY)
 );
-if (connectToMongoDBCommodity) {
-    console.log("Connected to Commodity database in MongoDB");
-}
 
 // Atlas Users
 const connectToMongoDBUsers = mongoose.createConnection(
     String(process.env.MONGDB_URL_USER)
 );
-if (connectToMongoDBUsers) {
-    console.log("Connected to User database in MongoDB");
-}
 
 // Local MongoDB Data
 const connectToMongoDBLocal = mongoose.createConnection(
     String(process.env.MONGO_URL_LOCAL_DATA)
 );
-if (connectToMongoDBLocal) {
-    console.log("Connected to Local MongoDB");
-}
 
 // Local MongoDB CommodityData
 const connectToMongoDBLocalCommodity = mongoose.createConnection(
     String(process.env.MONGO_URL_LOCAL_COMMODITY)
 );
-if (connectToMongoDBLocalCommodity) {
-    console.log("Connected to Local Commodity MongoDB");
-}
+
+// Verifying Connections
+if (connectToMongoDBData.readyState === 2)
+    console.log("Database Connected: Data");
+
+if (connectToMongoDBCommodity.readyState === 2)
+    console.log("Database Connected: CommodityData");
+
+if (connectToMongoDBUsers.readyState === 2)
+    console.log("Database Connected: Users");
+
+if (connectToMongoDBLocal.readyState === 2)
+    console.log("Database Connected: Local Data");
+
+if (connectToMongoDBLocalCommodity.readyState === 2)
+    console.log("Database Connected: Local CommodityData");
 
 module.exports = {
     connectToMongoDBData,
