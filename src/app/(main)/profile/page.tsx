@@ -67,7 +67,7 @@ const APIKeys: FC = () => {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:8080/api/user/apikeys",
+                    "http://localhost:5000/api/user/apikeys",
                     {
                         headers: {
                             "api-key": process.env.NEXT_PUBLIC_API_KEY || "",
@@ -95,7 +95,7 @@ const APIKeys: FC = () => {
 
         try {
             const response = await fetch(
-                `http://localhost:8080/api/user/createapikey?name=${apiname}&desc=${apidesc}`,
+                `http://localhost:5000/api/user/createapikey?name=${apiname}&desc=${apidesc}`,
                 {
                     headers: {
                         "api-key": process.env.NEXT_PUBLIC_API_KEY || "",
