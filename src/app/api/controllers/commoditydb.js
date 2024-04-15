@@ -106,13 +106,19 @@ async function handleGetCommodityFilter(req, res) {
         endDate,
     } = req.body;
 
+    console.log(
+        DateTime.fromISO(startDate).toISO(),
+        DateTime.fromISO(endDate).toISO()
+    );
+    console.log(startDate, endDate);
+
     const query = {
         "State Name": stateName,
         "District Name": districtName,
         "Market Name": marketName,
         "Reported Date": {
-            $gte: new Date(DateTime.fromISO(startDate).toISO()),
-            $lte: new Date(DateTime.fromISO(endDate).toISO()),
+            $gte: startDate,
+            $lte: endDate,
         },
     };
     const Commodity = connectToMongoDBCommodity.model(

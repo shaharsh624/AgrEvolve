@@ -33,6 +33,7 @@
     "date-fns": "^3.6.0",
     "deck.gl": "^9.0.0",
     "dotenv": "^16.4.5",
+    "framer-motion": "^11.0.28",
     "lucide-react": "^0.362.0",
     "maplibre-gl": "^3.0.0",
     "next": "^14.1.4",

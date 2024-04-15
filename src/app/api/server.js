@@ -40,12 +40,12 @@ app.get("/api/markets/:state/:district", authApikey, handleGetMarkets);
 // Commodities
 app.get("/api/commodity/:commodity", authApikey, handleGetCommodity);
 app.post("/api/commodity/create/:commodity", authApikey, handleCreateCommodity);
-app.post("/api/commodity", authApikey, handleGetCommodityFilter);
+app.post("/api/commodity", handleGetCommodityFilter);
 
 // User
 app.get("/api/user/createapikey", authApikey, handleAddApikey);
 app.get("/api/user/apikeys", authApikey, handleFetchApikey);
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(5000, () => {
     console.log(`Server Running...`);
 });

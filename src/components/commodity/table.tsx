@@ -64,7 +64,7 @@ export function TableDemo() {
         const fetchData = async () => {
             try {
                 const response = await fetch(
-                    "http://localhost:8080/api/commodity",
+                    "http://localhost:5000/api/commodity",
                     {
                         headers: {
                             "api-key": process.env.NEXT_PUBLIC_API_KEY || "",
