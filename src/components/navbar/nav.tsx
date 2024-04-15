@@ -27,7 +27,9 @@ export default function Navbar() {
                     <Button variant="outline">Commodities</Button>
                 </Link>
                 <About />
-                <Button variant="outline">Contact</Button>
+                <Link href="/contact">
+                    <Button variant="outline">Contact</Button>
+                </Link>
                 <Link href="/profile">
                     <Button variant="outline">API Keys</Button>
                 </Link>
