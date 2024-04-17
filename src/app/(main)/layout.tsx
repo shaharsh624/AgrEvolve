@@ -16,10 +16,12 @@ export default function RootLayout({
 }>) {
     return (
         <>
-            <Navbar />
+            <div className="relative z-10">
+                <Navbar />
+            </div>
             {children}
             <Toaster />
-            <Footer />
+            {/* <Footer /> */}
         </>
     );
 }
