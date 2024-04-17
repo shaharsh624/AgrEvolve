@@ -114,11 +114,12 @@ const APIKeys: FC = () => {
         } finally {
             setIsLoading(false);
         }
+        // window.location.reload();
     };
 
     return (
-        <div>
-            <Card>
+        <main className="flex flex-col items-center px-24 py-12">
+            <Card className="mt-4">
                 <div className="flex items-center mr-5">
                     <CardHeader>
                         <CardTitle>API Keys</CardTitle>
@@ -233,7 +234,7 @@ const APIKeys: FC = () => {
                     </Table>
                 </CardContent>
             </Card>
-        </div>
+        </main>
     );
 };
 

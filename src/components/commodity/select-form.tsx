@@ -202,7 +202,7 @@ export function CommodityForm() {
             const resData = await response.json();
             graphData = resData;
             console.log(graphData);
-            // console.log(resData);
+            console.log(resData);
             // const jsonData = data.sort((a, b) => a.localeCompare(b));
             // setCommodityItems(jsonData);
         } catch (error) {
@@ -627,7 +627,7 @@ export function CommodityForm() {
                                     </CardHeader>
                                     <CardContent>
                                         <div className="flex justify-center items-center mt-4">
-                                            <LineChart
+                                            {/* <LineChart
                                                 width={800}
                                                 height={250}
                                                 data={graphData}
@@ -640,7 +640,7 @@ export function CommodityForm() {
                                             >
                                                 <XAxis
                                                     dataKey="Reported Date"
-                                                    hide
+                                                    tick={{ fontSize: 12 }}
                                                 />
                                                 <YAxis />
                                                 <Tooltip
@@ -653,7 +653,7 @@ export function CommodityForm() {
                                                     dataKey={selectedDataKey}
                                                     stroke={colors.primary}
                                                 />
-                                            </LineChart>
+                                            </LineChart> */}
                                         </div>
                                     </CardContent>
                                 </Card>

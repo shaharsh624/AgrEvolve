@@ -1,10 +1,11 @@
 import React from "react";
-import App from "@/components/map/app";
-import { TypewriterEffectDemo } from "@/components/homepage";
+import { TypewriterEffectDemo } from "@/components/homepage-type";
+import { ThreeDCardDemo } from "@/components/data-card";
 export default function Home() {
     return (
-        <main className="flex flex-col items-center justify-between p-24">
+        <main className="flex flex-col items-center p-24">
             <TypewriterEffectDemo />
+            <ThreeDCardDemo />
         </main>
     );
 }

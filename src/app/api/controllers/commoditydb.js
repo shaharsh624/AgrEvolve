@@ -111,14 +111,15 @@ async function handleGetCommodityFilter(req, res) {
         DateTime.fromISO(endDate).toISO()
     );
     console.log(startDate, endDate);
+    console.log(stateName, districtName, marketName, commodity);
 
     const query = {
         "State Name": stateName,
         "District Name": districtName,
         "Market Name": marketName,
         "Reported Date": {
-            $gte: startDate,
-            $lte: endDate,
+            $gte: new Date(startDate),
+            $lte: new Date(endDate),
         },
     };
     const Commodity = connectToMongoDBCommodity.model(
@@ -134,6 +135,7 @@ async function handleGetCommodityFilter(req, res) {
         return res.status(500).json({ error: "Internal server error" });
     }
 }
+
 
 module.exports = {
     handleGetCommodity,
