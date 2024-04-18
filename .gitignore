@@ -40,3 +40,6 @@ src/app/api/node_modules/
 node_modules
 src/data/
 src/Data Upload logs.txt
+src/app/api/query.ipynb
+src/combined.csv
+src/combined1.csv

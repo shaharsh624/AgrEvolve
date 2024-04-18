@@ -19,6 +19,7 @@
         "luxon": "^3.4.4",
         "mongodb": "^6.5.0",
         "mongoose": "^8.2.1",
+        "node-pandas": "^1.0.5",
         "request": "^2.88.2"
     },
     "devDependencies": {
