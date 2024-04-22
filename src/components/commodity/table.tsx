@@ -13,52 +13,123 @@ import { useEffect, useState } from "react";
 
 const invoices = [
     {
-        invoice: "INV001",
-        paymentStatus: "Paid",
-        totalAmount: "$250.00",
-        paymentMethod: "Credit Card",
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "January 1, 2001",
     },
     {
-        invoice: "INV002",
-        paymentStatus: "Pending",
-        totalAmount: "$150.00",
-        paymentMethod: "PayPal",
+        Arrivals: 0.25,
+        ModalPrice: 130,
+        ReportedDate: "February 2, 2002",
     },
     {
-        invoice: "INV003",
-        paymentStatus: "Unpaid",
-        totalAmount: "$350.00",
-        paymentMethod: "Bank Transfer",
+        Arrivals: 0.65,
+        ModalPrice: 140,
+        ReportedDate: "March 3, 2003",
     },
     {
-        invoice: "INV004",
-        paymentStatus: "Paid",
-        totalAmount: "$450.00",
-        paymentMethod: "Credit Card",
+        Arrivals: 0.33,
+        ModalPrice: 155,
+        ReportedDate: "April 4, 2004",
     },
     {
-        invoice: "INV005",
-        paymentStatus: "Paid",
-        totalAmount: "$550.00",
-        paymentMethod: "PayPal",
+        Arrivals: 0.27,
+        ModalPrice: 125,
+        ReportedDate: "May 5, 2005",
     },
     {
-        invoice: "INV006",
-        paymentStatus: "Pending",
-        totalAmount: "$200.00",
-        paymentMethod: "Bank Transfer",
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "June 6, 2006",
     },
     {
-        invoice: "INV007",
-        paymentStatus: "Unpaid",
-        totalAmount: "$300.00",
-        paymentMethod: "Credit Card",
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "July 7, 2007",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "August 8, 2008",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 150,
+        ReportedDate: "September 9, 2009",
+    },
+    {
+        Arrivals: 0.3,
+        ModalPrice: 125,
+        ReportedDate: "October 10, 2010",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 135,
+        ReportedDate: "November 11, 2011",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 165,
+        ReportedDate: "December 12, 2012",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 110,
+        ReportedDate: "January 1, 2013",
+    },
+    {
+        Arrivals: 0.25,
+        ModalPrice: 130,
+        ReportedDate: "February 2, 2014",
+    },
+    {
+        Arrivals: 0.65,
+        ModalPrice: 140,
+        ReportedDate: "March 3, 2015",
+    },
+    {
+        Arrivals: 0.33,
+        ModalPrice: 255,
+        ReportedDate: "April 4, 2016",
+    },
+    {
+        Arrivals: 0.27,
+        ModalPrice: 205,
+        ReportedDate: "May 5, 2017",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 185,
+        ReportedDate: "June 6, 2018",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "July 7, 2019",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "August 8, 2020",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 95,
+        ReportedDate: "September 9, 2021",
+    },
+    {
+        Arrivals: 0.3,
+        ModalPrice: 125,
+        ReportedDate: "October 10, 2022",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "November 11, 2023",
     },
 ];
 
 export function TableDemo() {
-    // TODO: Edit this to use the data from the API
-
     const [data, setData] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
@@ -81,37 +152,31 @@ export function TableDemo() {
     }, []);
     return (
         <Table>
-            <TableCaption>
-                <div className="flex justify-end">
-                    <Button variant="default">Load More</Button>
-                </div>
-            </TableCaption>
             <TableHeader className="bg-accent text-accent-foreground">
                 <TableRow>
-                    <TableHead className="w-[100px]">Invoice</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Method</TableHead>
-                    <TableHead className="text-right">Amount</TableHead>
+                    <TableHead className="w-[300px]">Date</TableHead>
+                    <TableHead className="w-[200px]">
+                        Arrivale (Tonnes)
+                    </TableHead>
+                    <TableHead className="w-[200px]">
+                        Price (Rs./Quintal)
+                    </TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {invoices.map((invoice) => (
-                    <TableRow key={invoice.invoice}>
-                        <TableCell className="font-medium">
-                            {invoice.invoice}
-                        </TableCell>
-                        <TableCell>{invoice.paymentStatus}</TableCell>
-                        <TableCell>{invoice.paymentMethod}</TableCell>
-                        <TableCell className="text-right">
-                            {invoice.totalAmount}
-                        </TableCell>
+                    <TableRow key={invoice.ReportedDate}>
+                        <TableCell>{invoice.ReportedDate}</TableCell>
+                        <TableCell>{invoice.Arrivals}</TableCell>
+                        <TableCell>{invoice.ModalPrice}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>
             <TableFooter>
                 <TableRow>
-                    <TableCell colSpan={3}>Total</TableCell>
-                    <TableCell className="text-right">$2,500.00</TableCell>
+                    <TableCell colSpan={1}>Total</TableCell>
+                    <TableCell>1.352</TableCell>
+                    <TableCell>2,500</TableCell>
                 </TableRow>
             </TableFooter>
         </Table>
