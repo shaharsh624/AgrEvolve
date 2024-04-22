@@ -106,11 +106,6 @@ async function handleGetCommodityFilter(req, res) {
         endDate,
     } = req.body;
 
-    // console.log(
-    //     DateTime.fromISO(startDate).toISO(),
-    //     DateTime.fromISO(endDate).toISO()
-    // );
-    // console.log(startDate, endDate);
     console.log(stateName, districtName, marketName, commodity);
 
     const query = {
