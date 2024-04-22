@@ -3,7 +3,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -37,81 +36,123 @@ import Example from "./graph";
 import { Label } from "../ui/label";
 import { Separator } from "../ui/separator";
 import { TableDemo } from "./table";
-import {
-    LineChart,
-    Line,
-    XAxis,
-    YAxis,
-    CartesianGrid,
-    Tooltip,
-    Legend,
-    ResponsiveContainer,
-} from "recharts";
+import { Legend, Line, LineChart, Tooltip, XAxis, YAxis } from "recharts";
 
-var graphData = [
+const graphData = [
     {
-        _id: {
-            $oid: "66121aea721348e8ef590603",
-        },
-        "Reported Date": {
-            $date: "2022-04-07T18:30:00.000Z",
-        },
-        Arrivals: {
-            $numberDecimal: "0.23",
-        },
-        Group: "Flowers",
-        Variety: "Astera",
-        "Market Name": "Gudimalkapur",
-        "Modal Price": [
-            {
-                $numberDecimal: "150",
-            },
-        ],
-        "Min Price": [
-            {
-                $numberDecimal: "150",
-            },
-        ],
-        "Max Price": [
-            {
-                $numberDecimal: "150",
-            },
-        ],
-        "State Name": "Telangana",
-        "District Name": "Hyderabad",
-        __v: 0,
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "January 1, 2001",
     },
     {
-        _id: {
-            $oid: "66121aea721348e8ef590605",
-        },
-        "Reported Date": {
-            $date: "2022-06-07T18:30:00.000Z",
-        },
-        Arrivals: {
-            $numberDecimal: "0.05",
-        },
-        Group: "Flowers",
-        Variety: "Astera",
-        "Market Name": "Gudimalkapur",
-        "Modal Price": [
-            {
-                $numberDecimal: "120",
-            },
-        ],
-        "Min Price": [
-            {
-                $numberDecimal: "120",
-            },
-        ],
-        "Max Price": [
-            {
-                $numberDecimal: "120",
-            },
-        ],
-        "State Name": "Telangana",
-        "District Name": "Hyderabad",
-        __v: 0,
+        Arrivals: 0.25,
+        ModalPrice: 130,
+        ReportedDate: "February 2, 2002",
+    },
+    {
+        Arrivals: 0.65,
+        ModalPrice: 140,
+        ReportedDate: "March 3, 2003",
+    },
+    {
+        Arrivals: 0.33,
+        ModalPrice: 155,
+        ReportedDate: "April 4, 2004",
+    },
+    {
+        Arrivals: 0.27,
+        ModalPrice: 125,
+        ReportedDate: "May 5, 2005",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "June 6, 2006",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "July 7, 2007",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "August 8, 2008",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 150,
+        ReportedDate: "September 9, 2009",
+    },
+    {
+        Arrivals: 0.3,
+        ModalPrice: 125,
+        ReportedDate: "October 10, 2010",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 135,
+        ReportedDate: "November 11, 2011",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 165,
+        ReportedDate: "December 12, 2012",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 110,
+        ReportedDate: "January 1, 2013",
+    },
+    {
+        Arrivals: 0.25,
+        ModalPrice: 130,
+        ReportedDate: "February 2, 2014",
+    },
+    {
+        Arrivals: 0.65,
+        ModalPrice: 140,
+        ReportedDate: "March 3, 2015",
+    },
+    {
+        Arrivals: 0.33,
+        ModalPrice: 255,
+        ReportedDate: "April 4, 2016",
+    },
+    {
+        Arrivals: 0.27,
+        ModalPrice: 205,
+        ReportedDate: "May 5, 2017",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 185,
+        ReportedDate: "June 6, 2018",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "July 7, 2019",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "August 8, 2020",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 95,
+        ReportedDate: "September 9, 2021",
+    },
+    {
+        Arrivals: 0.3,
+        ModalPrice: 125,
+        ReportedDate: "October 10, 2022",
+    },
+    {
+        Arrivals: 0.15,
+        ModalPrice: 125,
+        ReportedDate: "November 11, 2023",
     },
 ];
 
@@ -170,7 +211,7 @@ export function CommodityForm() {
         resolver: zodResolver(FormSchema),
     });
 
-    async function onSubmit(data: z.infer<typeof FormSchema>) {
+    async function onSubmition(data: z.infer<typeof FormSchema>) {
         console.log(data);
 
         var startDateOld = new Date(dateRange.from);
@@ -200,7 +241,6 @@ export function CommodityForm() {
                 }
             );
             const resData = await response.json();
-            graphData = resData;
             console.log(graphData);
             console.log(resData);
             // const jsonData = data.sort((a, b) => a.localeCompare(b));
@@ -221,8 +261,11 @@ export function CommodityForm() {
                 action: <ToastAction altText="Ok">Ok</ToastAction>,
             });
         } else {
-            setIsSubmitted(true);
         }
+    }
+
+    async function onSubmit(data: z.infer<typeof FormSchema>) {
+        setIsSubmitted(true);
     }
 
     useEffect(() => {
@@ -315,7 +358,7 @@ export function CommodityForm() {
         }
     }, [selectedDistrict, selectedState]);
 
-    const [selectedDataKey, setSelectedDataKey] = React.useState("Modal Price");
+    const [selectedDataKey, setSelectedDataKey] = React.useState("ModalPrice");
 
     const colors = {
         primary: "#16A34A",
@@ -324,19 +367,43 @@ export function CommodityForm() {
         // Add more colors as needed
     };
 
-    const CustomTooltip = () => {
-        return (
-            <div className="bg-background border p-4 flex gap-x-6">
-                <div className="flex flex-col">
-                    <Label className="text-sm">Quantity</Label>
-                    <Label className="text-lg font-bold">{"10,000"} Kg</Label>
+    const [hoveredData, setHoveredData] = React.useState(null);
+
+    const handleMouseEnter = (data) => {
+        setHoveredData(data);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredData(null);
+    };
+
+    const CustomTooltip = ({ active, payload }) => {
+        if (active && payload && payload.length) {
+            const data = payload[0].payload;
+            return (
+                <div className="bg-background border p-4 flex gap-x-6">
+                    <div className="flex flex-col">
+                        <Label className="text-sm">Date</Label>
+                        <Label className="text-lg font-bold">
+                            {data.ReportedDate}
+                        </Label>
+                    </div>
+                    <div className="flex flex-col">
+                        <Label className="text-sm">Quantity</Label>
+                        <Label className="text-lg font-bold">
+                            {data.Arrivals} Kg
+                        </Label>
+                    </div>
+                    <div className="flex flex-col">
+                        <Label className="text-sm">Price</Label>
+                        <Label className="text-lg font-bold">
+                            Rs. {data.ModalPrice}
+                        </Label>
+                    </div>
                 </div>
-                <div className="flex flex-col">
-                    <Label className="text-sm">Price</Label>
-                    <Label className="text-lg font-bold">Rs. {"1,200"}</Label>
-                </div>
-            </div>
-        );
+            );
+        }
+        return null;
     };
 
     const handleSelectChange = (value) => {
@@ -569,10 +636,10 @@ export function CommodityForm() {
                                                 }}
                                                 showCompare={false}
                                                 initialDateTo={
-                                                    new Date(2024, 1, 1)
+                                                    new Date(2023, 11, 31)
                                                 }
                                                 initialDateFrom={
-                                                    new Date(2024, 0, 1)
+                                                    new Date(2001, 0, 1)
                                                 }
                                             />
                                             <FormMessage />
@@ -615,7 +682,7 @@ export function CommodityForm() {
                                                     <SelectValue placeholder="Modal Price" />
                                                 </SelectTrigger>
                                                 <SelectContent>
-                                                    <SelectItem value="Modal Price">
+                                                    <SelectItem value="ModalPrice">
                                                         Modal Price
                                                     </SelectItem>
                                                     <SelectItem value="Arrivals">
@@ -627,8 +694,8 @@ export function CommodityForm() {
                                     </CardHeader>
                                     <CardContent>
                                         <div className="flex justify-center items-center mt-4">
-                                            {/* <LineChart
-                                                width={800}
+                                            <LineChart
+                                                width={1200}
                                                 height={250}
                                                 data={graphData}
                                                 margin={{
@@ -639,7 +706,7 @@ export function CommodityForm() {
                                                 }}
                                             >
                                                 <XAxis
-                                                    dataKey="Reported Date"
+                                                    dataKey="ReportedDate"
                                                     tick={{ fontSize: 12 }}
                                                 />
                                                 <YAxis />
@@ -653,7 +720,7 @@ export function CommodityForm() {
                                                     dataKey={selectedDataKey}
                                                     stroke={colors.primary}
                                                 />
-                                            </LineChart> */}
+                                            </LineChart>
                                         </div>
                                     </CardContent>
                                 </Card>
